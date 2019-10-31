@@ -1,0 +1,49 @@
+<p>表单用法</p>
+<p>双向绑定用法</p>
+<div class="container">
+    <h1>Hero Form</h1>
+    <form #heroForm="ngForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="myName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="alterEgo">Alter Ego</label>
+            <input type="text" class="form-control" name="alterEgo" [(ngModel)]="myId">
+        </div>
+
+        <button type="submit" class="btn btn-success" (click)="show()">Submit</button>
+
+    </form>
+</div>
+<p>ngForm用法</p>
+<p>简单示例：</p>
+<input #phone placeholder="phone number">
+<button (click)="callPhone(phone.value)">Call</button>
+<!-- 注意：ngModle伴随name，否则会报错 -->
+<form #userForm="ngForm" (ngSubmit)="logForm(userForm)" novalidate>
+    <label>姓名:</label>
+    <input type="text" name="name" [(ngModel)]="user.name">
+    <label>电话:</label>
+    <input type="text" name="mobile" [ngModel]="user.mobile">
+    <label>城市:</label>
+    <input type="text" name="city" [ngModel]="user.city">
+    <label>街道:</label>
+    <input type="text" name="street" [ngModel]="user.street">
+    <button type="submit">保存</button>
+</form>
+<p>ngModelGroup用法</p>
+<form #userForms="ngForm" (ngSubmit)="logForm(userForms)">
+    <label>姓名:</label>
+    <input type="text" name="name" [(ngModel)]="users.name">
+    <label>电话:</label>
+    <input type="text" name="mobile" [ngModel]="users.mobile">
+    <fieldset ngModelGroup="address">
+        <label>城市:</label>
+        <input type="text" name="city" [ngModel]="users.address.city">
+        <label>街道:</label>
+        <input type="text" name="street" [ngModel]="users.address.street">
+        <button type="submit">保存</button>
+    </fieldset>
+</form>

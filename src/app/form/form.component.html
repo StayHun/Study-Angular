@@ -1,0 +1,4 @@
+<p>父子传值用法</p>
+<p>父传子示例：</p>
+<app-son [msg]="msg" [run]="parentRun" (outer)="runParent($event)"></app-son>
+<p>来自子组件的数据：{{sonMsg}}</p>
