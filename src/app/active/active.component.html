@@ -1,0 +1,20 @@
+<p>响应式表单用法</p>
+<form [formGroup]="formModel">
+    <div>
+        用户名：<input type="text" formControlName="username">
+    </div>
+    <div>
+        手机号：<input type="number" formControlName="mobile">
+    </div>
+    <div formGroupName="passwordsGroup">
+        <div>
+            密码：<input type="password" formControlName="password">
+        </div>
+        <div>
+            确认密码：<input type="password" formControlName="pconfirm">
+        </div>
+    </div>
+    <button (click) = "onSubmit()">注册</button>
+    <button (click) = "editData()">编辑</button>
+    <button (click) = "editAll()">编辑所有</button>
+</form>

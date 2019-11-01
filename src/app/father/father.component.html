@@ -1,4 +1,5 @@
-<p>表单用法</p>
+<!-- <a routerLink="/active">响应式表单用法</a> -->
+<p>模板驱动表单用法</p>
 <p>双向绑定用法</p>
 <div class="container">
     <h1>Hero Form</h1>
@@ -47,3 +48,33 @@
         <button type="submit">保存</button>
     </fieldset>
 </form>
+<p>表单控件的验证和状态</p>
+<!-- #name="ngModel"是核心 -->
+<input type="text" name="name" [(ngModel)]="user.name" #name="ngModel" required minlength="3">
+<span *ngIf="name.pristine" class="label label-primary">未修改</span>
+<span *ngIf="name.dirty" class="label label-warning">已修改</span>
+<span *ngIf="name.valid" class="label label-success">有效</span>
+<div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+<p *ngIf="name.errors?.minlength">姓名最小长度为3</p>
+<p *ngIf="name.errors?.required">必须输入姓名</p>
+</div>
+<!-- 不用#name="ngModel" -->
+<!-- 重置表单 -->
+<form #userFormss="ngForm" *ngIf="active">
+    <input type="text" name="mobile" [ngModel]="user.mobile" required minlength="11" maxlength="11">
+    <span *ngIf="userFormss.controls.mobile?.pristine" class="label label-primary">未修改</span>
+    <span *ngIf="userFormss.controls.mobile?.dirty" class="label label-warning">已修改</span>
+    <span *ngIf="userFormss.controls.mobile?.valid" class="label label-success">有效</span>
+    <div [hidden]="userFormss.controls.mobile?.valid" class="alert alert-danger">
+    <p *ngIf="userFormss.controls.mobile?.errors?.minlength">电话长度必须为11</p>
+    <p *ngIf="userFormss.controls.mobile?.errors?.required">必须输入电话</p>
+    </div>
+    <button (click)="reset(userFormss)">重置</button>
+</form>
+<!-- 总结
+至此，有关模型驱动的表单的基本用法大致完成，再总结一下模型驱动的表单的基本特性：
+
+所有的表单控件的定义都在模板里
+所有的验证器都在模板里面添加
+表单数据的状态、验证结果都在模板上通过判断表单里面控件数据的状态来显示
+如果需要测试这部分的代码，需要使用e2e（端到端）测试，也就是在浏览器里面 -->

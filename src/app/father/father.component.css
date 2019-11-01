@@ -1,0 +1,9 @@
+/* 控件已经被访问过：为真时：ng-touched,为假时：ng-untouched
+控件值已经变化：为真时：ng-dirty,为假时：ng-pristine
+为真时：ng-valid,为假时：ng-invalid */
+.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid #42A948; /* green */
+    }
+    .ng-invalid:not(form).ng-invalid:not(fieldset) {
+    border-left: 5px solid #a94442; /* red */
+    }

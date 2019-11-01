@@ -10,6 +10,7 @@ export class FatherComponent implements OnInit {
   myId: string;
   user: any;
   users: any;
+  active = true;
   constructor() {
     this.user = {
       name: '张三',
@@ -41,5 +42,18 @@ export class FatherComponent implements OnInit {
 
   logForm(theForm) {
     console.log(theForm);
+    //     在这个方法里，theForm就是ngForm的模板引用实例，类型是NgForm的。
+    // 如果表单验证有失败，theForm.invalid就是false。
+    // theForm.controls就是这个表单里的所有控件，如果想获取姓名的验证结果，就是theForm.controls['name'].errors。
+    // 用这种方式，我们就可以在组件中获取所有表单控件的数据、验证状态、错误信息等。
+  }
+
+  reset() {
+    this.user = { // 重置用户数据
+      address: {}
+    };
+    this.active = false;
+    setTimeout(() => this.active = true, 0);
+    return false;
   }
 }
